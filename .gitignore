@@ -2,3 +2,5 @@ node_modules
 public/config.js
 build
 .firebase
+App copy.js
+GameComponent.jsx
