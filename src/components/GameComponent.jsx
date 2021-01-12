@@ -7,27 +7,63 @@ import {questionsSet1, questionsSet2} from '../questions.js'
 import '../bootstrap.css'
 import './GameComponent.css'
 
+
 class GameComponent extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            actionQuestions: questionsSet1.actionQuestions,
-            emotionQuestions: questionsSet1.emotionQuestions,
-            situationQuestions: questionsSet1.situationQuestions,
-            thoughtQuestions: questionsSet1.thoughtQuestions,
-            AssociationQuestions: questionsSet1.associationQuestions,
-            questionsTitles: [
-                questionsSet1.actionQuestions.title,
-                questionsSet1.emotionQuestions.title,
-                questionsSet1.situationQuestions.title,
-                questionsSet1.thoughtQuestions.title,
-                questionsSet1.associationQuestions.title
-            ]
-        }
+        this.state = {q : {}}
+
+    //     this.state = {
+    //         actionQuestions: questionsSet1.actionQuestions,
+    //         emotionQuestions: questionsSet1.emotionQuestions,
+    //         situationQuestions: questionsSet1.situationQuestions,
+    //         thoughtQuestions: questionsSet1.thoughtQuestions,
+    //         AssociationQuestions: questionsSet1.associationQuestions,
+    //         questionsTitles: [
+    //             questionsSet1.actionQuestions.title,
+    //             questionsSet1.emotionQuestions.title,
+    //             questionsSet1.situationQuestions.title,
+    //             questionsSet1.thoughtQuestions.title,
+    //             questionsSet1.associationQuestions.title
+    //         ]
+    //     }
+    // }
+
+ //const trytojson = JSON.parse(this.props.questionsSet1);
+ //this.setState({q: this.props.q});
+ console.log(' in child',this.props.q);
+// const q = this.props.questionsSet1;
+    this.state = {
+        actionQuestions: questionsSet1.actionQuestions,
+        emotionQuestions: questionsSet1.emotionQuestions,
+        situationQuestions: questionsSet1.situationQuestions,
+        thoughtQuestions: questionsSet1.thoughtQuestions,
+        AssociationQuestions: questionsSet1.associationQuestions,
+        questionsTitles: [
+            questionsSet1.actionQuestions.title,
+            questionsSet1.emotionQuestions.title,
+            questionsSet1.situationQuestions.title,
+            questionsSet1.thoughtQuestions.title,
+            questionsSet1.associationQuestions.title
+        ]
     }
+
+
+}
+
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('props in child component', this.props.q) ;
+  }
+
+  componentDidMount() {
+      this.setState({q:this.props.q})
+      console.log('props in child component mount', this.state.q) ;
+  }
     
     render() {
+        const {q} = this.props;
         return (
             <div>
                 <div>
@@ -43,41 +79,41 @@ class GameComponent extends Component {
                         })}
                     </div>
                     <div className="row">
-                        <div className="col action question-type">{this.state.actionQuestions.title}</div>
+                        <div className="col action question-type">{q.actionQuestions.title}</div>
                         {
-                            this.state.actionQuestions.content.map ((question, index) => 
+                            q.actionQuestions.content.map ((question, index) => 
                                 <div className="col" key={"action" + index}><TileComponent question={question} type="action" emoji=":surfer:"/></div>                        
                             )
                         }
                     </div>
                     <div className="row">
-                        <div className="col emotion question-type">{this.state.emotionQuestions.title}</div>
+                        <div className="col emotion question-type">{q.emotionQuestions.title}</div>
                         {
-                            this.state.emotionQuestions.content.map ((question, index) => 
+                            q.emotionQuestions.content.map ((question, index) => 
                                 <div className="col" key={"emotion" + index}><TileComponent question={question} type="emotion" emoji=":heart:"/></div>                       
                             )
                         }
                     </div>
                     <div className="row">
-                        <div className="col situation question-type">{this.state.situationQuestions.title}</div>
+                        <div className="col situation question-type">{q.situationQuestions.title}</div>
                         {
-                            this.state.situationQuestions.content.map ((question, index) => 
+                            q.situationQuestions.content.map ((question, index) => 
                                 <div className="col" key={"situation" + index}><TileComponent question={question} type="situation" emoji=":family:"/></div>                        
                             )
                         }
                     </div>
                     <div className="row">
-                        <div className="col thought question-type">{this.state.thoughtQuestions.title}</div>
+                        <div className="col thought question-type">{q.thoughtQuestions.title}</div>
                         {
-                            this.state.thoughtQuestions.content.map ((question, index) => 
+                            q.thoughtQuestions.content.map ((question, index) => 
                                 <div className="col" key={"thought" + index}><TileComponent question={question} type="thought" emoji=":thought_balloon:"/></div>                        
                             )
                         }
                     </div>
                     <div className="row">
-                        <div className="col association question-type">{this.state.AssociationQuestions.title}</div>
+                        <div className="col association question-type">{q.associationQuestions.title}</div>
                         {
-                            this.state.AssociationQuestions.content.map ((question, index) => 
+                            q.associationQuestions.content.map ((question, index) => 
                                 <div className="col" key={"association" + index}><TileComponent question={question} type="association" emoji=":bulb:"/></div>                        
                             )
                         }
