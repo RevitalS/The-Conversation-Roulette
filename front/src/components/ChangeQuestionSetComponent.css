@@ -1,0 +1,10 @@
+.chooseQuestionsSet {
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+  }
+  
+  .chooseQuestionsSetButton {
+    font-size: 12px;
+  }

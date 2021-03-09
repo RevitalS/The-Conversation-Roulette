@@ -1,0 +1,45 @@
+.question-type {
+    width: 100px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div {
+    direction: rtl;
+}
+
+.header {
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.instructions {
+    display: "flex";
+    justify-content: "right";
+}
+
+.RandomTilePickerComponent {
+    display: "flex";
+    justify-content: "center";
+}
+
+.gameTitle {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.col {
+    min-height: 50px;
+}
+
+.container {
+    /* margin-right: 60px; */
+}
+
+.gameWrapper {
+    display: flex;
+    flex-direction: row;
+}
