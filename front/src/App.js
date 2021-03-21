@@ -14,6 +14,7 @@ class App extends Component {
 
 state = {
   q: {},
+  subjects: {},
   isLoading: true,
   isQuestionSet: false,
   buttonText:"Add new Qeustions Set",
@@ -23,8 +24,9 @@ callAPI() {
 
     fetch(serverUrl + '/')
     .then(res => res.json())
-   .then(data => {console.log(data);
-    this.setState({q: data,
+   .then(data => {console.log("sub",data.subjects);
+    this.setState({q: data.q,
+      subjects: data.subjects,
     isLoading: false})
    })
   //  .then(data => this.setState({q: data}))
@@ -45,6 +47,12 @@ componentDidMount() {
     console.log(this.state);
 }
 
+componentDidUpdate(prevProps, prevState, snapshot) {
+  console.log('state in app', this.state) ;
+  this.chooseSubject();
+  //this.setState{}
+}
+
 handleClickQuestionSet() {
   if (!this.state.isQuestionSet) {
   this.setState({isQuestionSet: true,
@@ -56,8 +64,20 @@ handleClickQuestionSet() {
   console.log(this.state.isQuestionSet);
 }
 
+chooseSubject() {
+    console.log("subject",this.state.subjects);
+    let template =[];
+    if (this.state.subjects.length > 0) {
+          this.state.subjects.map(sub => (
+        <NavDropdown.Item href="#action/3.1">{sub['subject']}</NavDropdown.Item>
+    ))
+    return template;
+    }
+}
+
 
   render() {
+    const subjects = this.state.subjects;
     return (
       <div className="App">
           <Navbar bg="light" expand="lg">
@@ -68,9 +88,11 @@ handleClickQuestionSet() {
                 <Nav.Link href="#home">Home</Nav.Link>
                 <Nav.Link href="#link">Link</Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                {
+                  subjects ?
+                    this.chooseSubject()
+                    : null
+                }
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                 </NavDropdown>
@@ -83,7 +105,7 @@ handleClickQuestionSet() {
             !this.state.isLoading ?(
               !this.state.isQuestionSet ?(
             <GameComponent q={this.state.q}/>
-            ) : <AddQuestionSet serverUrl={this.serverUrl}/>) 
+            ) : <AddQuestionSet serverUrl={serverUrl}/>) 
             
             : (<div>
               <h1>Wait till loading</h1>

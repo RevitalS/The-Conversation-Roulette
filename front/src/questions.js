@@ -1,4 +1,5 @@
 let questionsSet1 = {
+    subject: 'גילאי 8+',
     actionQuestions: {
         title: "פעולות",
         content: [
@@ -62,6 +63,7 @@ let questionsSet1 = {
 }
 
 let questionsSet2 = {
+    subject: "גילאי 5-7",
     actionQuestions: {
         title: "דברים לעשות",
         content: [

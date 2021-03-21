@@ -29,23 +29,39 @@ app.listen(process.env.PORT || 3000, ()=> {
   .then(client => {
     console.log('Connected to Database');
     const db = client.db('conversation');
-    const quizCollection = db.collection('sheet');
+    const quizCollection = db.collection('convs');
 
-   // quizCollection.insertOne(questions.questionsSet1);
+    //quizCollection.insertOne(questions.questionsSet1);
+
+    // const sub = quizCollection.find({}).project({subject: 1, _id:0}).toArray()
+    // .then(res => res.map(x => Object.values(x)[0]));
+    //console.log(Object.values(sub));
 
 
       app.get('/', (req, res) => {
-        db.collection('sheet').find().toArray()
+        const sub =[];
+         quizCollection.find({}).project({subject: 1, _id:0}).toArray()
+        .then(r => r.map(x => sub.push(Object.values(x)[0])))
+        db.collection('convs').find().toArray()
           .then(results => {
-            //console.log(results);
-            res.json(results[0]);
+            console.log(sub);
+            res.json({subjects:sub, q:results[0]});
           })
           .catch(error => console.error(error))
         // ...
       })
 
+      app.post('/qeustionset', (req,res) => {
+        console.log('post server')
+       // console.log(req.body);
+         quizCollection.insertOne(req.body);
+      })
+
   })
   .catch(console.error);
+
+
+
 
  /* app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')

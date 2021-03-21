@@ -1,0 +1,23 @@
+.chooseTopicNumbers {
+    width: 200px;
+    align-self: center;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.formItems {
+    align-items: center;
+}
+
+.cardInput {
+    width: 400px;
+}
+
+.buttonStyle{
+    width: 200px;
+}
