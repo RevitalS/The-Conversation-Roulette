@@ -10,8 +10,30 @@ class NavbarLayout extends Component {
  constructor (props){
     super(props);
  }
-render() {
 
+
+ componentDidUpdate(prevProps, prevState, snapshot) {
+  console.log('props in child nav', this.props.subjects) ;
+}
+
+// chooseSubject() {
+//   console.log("subject in nav",this.props.subjects);
+//   let template =[];
+//   if (this.props.subjects.length > 0) {
+//     console.log(this.props.subjects);
+//         this.props.subjects.map(sub => {(
+//      template.push( <NavDropdown.Item href="#action/3.1">{sub}</NavDropdown.Item>)
+
+//   ); 
+//           console.log(sub);
+// })
+// console.log(template);
+//   return template;
+//   }
+// }
+
+render() {
+  const {subjects, buttonText} = this.props;
 return (
 <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -20,15 +42,22 @@ return (
     <Nav className="mr-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Link</Nav.Link>
-      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
+      <NavDropdown title="בחר נושא" id="basic-nav-dropdown">
+                {
+                 
+                 subjects  && subjects.length >0? 
+                 //this.chooseSubject()
+                 subjects.map((sub, i) => 
+                  <NavDropdown.Item href="#action/3.1" key={i}>{sub}</NavDropdown.Item>
+                  )
+                    :null
+                    
+                }
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                </NavDropdown>
     </Nav>
-      <Button variant="outline-success" onClick={() => this.props.handleClick()}>Search</Button>
+      <Button variant="outline-success" onClick={() => this.props.handleClick()}>{buttonText}</Button>
   </Navbar.Collapse>
 </Navbar>
 );
