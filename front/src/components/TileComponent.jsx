@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Emoji from 'react-emoji-render'
 import './TileComponent.css'
+import { Button} from 'react-bootstrap'
 
 class TileComponent extends Component {
     constructor(props) {
@@ -16,10 +17,10 @@ class TileComponent extends Component {
     render() {     
         return (
             <div className="tileComponent">
-                <button className={this.props.type} onClick={this.showQuestion}>
+                <Button variant={this.props.type} onClick={this.showQuestion}>
                     {!this.state.showQuestion && <Emoji text={this.props.emoji}/>}
                     {this.state.showQuestion && this.props.question.content}
-                </button>
+                </Button>
             </div>
         )
     }

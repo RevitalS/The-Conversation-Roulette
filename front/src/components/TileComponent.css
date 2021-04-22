@@ -23,6 +23,48 @@ button {
     background-color: #F9BD4F;
 }
 
+
+
+.btn-set0 {
+    background-color: pink;
+    
+}
+
+.btn-set1 {
+    background-color: greenyellow;
+}
+
+.btn-set2 {
+    background-color: lightblue;
+}
+
+.btn-set3 {
+    background-color: yellow;
+}
+
+.btn-set4 {
+    background-color: #F9BD4F;
+}
+
+.btn-set5 {
+    background-color: #df4ff9;
+}
+
+.btn-set6 {
+    background-color: #4ff9eb;
+}
+
+.btn-set7 {
+    background-color: #f94f57;
+}
+
+.btn-set8 {
+    background-color: #d4f94f;
+}
+.btn-set9 {
+    background-color: #b18af0;
+}
+
 .tileComponent {
     height: 100%;
 }

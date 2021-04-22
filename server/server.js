@@ -3,8 +3,8 @@ const bodyParser= require('body-parser');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const cors = require("cors");
-const questions = require('./questions');
-//const questions = require('./q');
+//const questions = require('./questions');
+const questions = require('./q');
 
 
 // Make sure you place body-parser before your CRUD handlers!
@@ -41,11 +41,12 @@ app.listen(process.env.PORT || 3000, ()=> {
       app.get('/', (req, res) => {
         const sub =[];
          quizCollection.find({}).project({subject: 1, _id:0}).toArray()
-        .then(r => r.map(x => sub.push(Object.values(x)[0])))
-        db.collection('convs').find().toArray()
+        .then(r => r.map(x => sub.push(Object.values(x)[0])));
+       const bla =  db.collection('convs').findOne({subject: 'גילאי 6-8'})
           .then(results => {
-            console.log(sub);
-            res.json({subjects:sub, q:results[0]});
+            
+            console.log(results);
+            res.json({subjects:sub, q:results});
           })
           .catch(error => console.error(error))
         // ...

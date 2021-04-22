@@ -1,4 +1,5 @@
-let questionsSet1 = [
+let questionsSet1 = {subject: "גילאי 6-8",
+sets:[
     {
         title: "פעולות",
         content: [
@@ -59,7 +60,7 @@ let questionsSet1 = [
             {content: "חמש מילים שקופצות לי שקשורות לחברות וחברים"},
         ]
     }
-]
+]}
 
 
 module.exports = {questionsSet1};
