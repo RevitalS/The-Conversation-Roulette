@@ -63,25 +63,26 @@ class AddQuestionSet extends Component {
 
 
        // e.preventDefault()
+       debugger;
         const formData = new FormData(e.target),
               formDataObj = Object.fromEntries(formData.entries())
         console.log(formDataObj);
 
-let jsonData = {subject: formData.get('subject'), sets:[] }
+        let jsonData = {subject: formData.get('subject'), sets:[] }
 
-for (let i = 0; i < this.state.topicsNum; i++) {
-    const contentArr = [];
-    for (let j =0; j < this.state.cardsNum; j++) {
-    contentArr.push({content: formData.get(this.content+(i+1)+(j+1))})
-    }
-    jsonData.sets[i] = {
-        title: formData.get(this.title+(i+1)),
-        content: contentArr
-    }
+        for (let i = 0; i < this.state.topicsNum; i++) {
+            const contentArr = [];
+            for (let j =0; j < this.state.cardsNum; j++) {
+                contentArr.push({content: formData.get(this.content+(i+1)+(j+1))})
+            }
+            jsonData.sets[i] = {
+                title: formData.get(this.title+(i+1)),
+                content: contentArr
+            }
 
 
-}
-console.log(jsonData);
+        }
+        console.log(jsonData);
         console.log(this.props.serverUrl);
         fetch(this.props.serverUrl + '/qeustionset', {
             method: 'post',

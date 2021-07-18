@@ -16,21 +16,24 @@ class NavbarLayout extends Component {
   console.log('props in child nav', this.props.subjects) ;
 }
 
-// chooseSubject() {
-//   console.log("subject in nav",this.props.subjects);
-//   let template =[];
-//   if (this.props.subjects.length > 0) {
-//     console.log(this.props.subjects);
-//         this.props.subjects.map(sub => {(
-//      template.push( <NavDropdown.Item href="#action/3.1">{sub}</NavDropdown.Item>)
-
-//   ); 
-//           console.log(sub);
-// })
-// console.log(template);
-//   return template;
-//   }
+// handleSelect = e => {
+//    console.log(this.props.serverUrl);
+//    console.log(e);
+//   fetch(this.props.serverUrl + '/changeset', {
+//       method: 'post',
+//       headers: {'Content-Type': 'application/json'},
+//       body: JSON.stringify({title: e})
+//   })
+//   //console.log("data")
+//   //fetch(this.props.serverUrl + '/changeset')
+//   .then(res => res.json())
+//   .then(data => {
+//     console.log(data.q, "data");
+//     this.setState({q: data.q})
+//       })
+//       .catch( err => console.log(err));
 // }
+
 
 render() {
   const {subjects, buttonText} = this.props;
@@ -42,13 +45,13 @@ return (
     <Nav className="mr-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Link</Nav.Link>
-      <NavDropdown title="בחר נושא" id="basic-nav-dropdown">
+      <NavDropdown title="בחרו נושא" id="basic-nav-dropdown" onSelect={this.props.handleSelect} >
                 {
                  
                  subjects  && subjects.length >0? 
                  //this.chooseSubject()
                  subjects.map((sub, i) => 
-                  <NavDropdown.Item href="#action/3.1" key={i}>{sub}</NavDropdown.Item>
+                  <NavDropdown.Item eventKey={sub} key={i}>{sub}</NavDropdown.Item>
                   )
                     :null
                     
