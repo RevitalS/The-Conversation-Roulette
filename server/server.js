@@ -37,15 +37,14 @@ app.listen(process.env.PORT || 3000, ()=> {
     // .then(res => res.map(x => Object.values(x)[0]));
     //console.log(Object.values(sub));
 
-
       app.get('/', (req, res) => {
         const sub =[];
          quizCollection.find({}).project({subject: 1, _id:0}).toArray()
         .then(r => r.map(x => sub.push(Object.values(x)[0])));
-       const bla =  db.collection('convs').findOne({subject: 'גילאי 6-8'})
+       const bla =  quizCollection.findOne({subject: 'גילאי 6-8'})
           .then(results => {
             
-            console.log(results);
+            console.log(results, "defualt data");
             res.json({subjects:sub, q:results});
           })
           .catch(error => console.error(error))
@@ -56,6 +55,16 @@ app.listen(process.env.PORT || 3000, ()=> {
         console.log('post server')
        // console.log(req.body);
          quizCollection.insertOne(req.body);
+      })
+
+      app.post('/changeset', (req,res) => {
+        console.log(req.body.title, "new title");
+
+       const set = quizCollection.findOne({subject: req.body.title})
+       .then(results => {
+         console.log(results, "new data");
+         res.json({q:results});
+       })
       })
 
   })
