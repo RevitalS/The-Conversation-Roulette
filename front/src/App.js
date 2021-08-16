@@ -72,7 +72,12 @@ handleSelect = e => {
 .then(res => res.json())
 .then(data => {
   console.log(data, "data new");
-  this.setState({q: data.q});
+ // this.setState({q: data.q});
+  const titles = data.q.sets.map( s => s.title);
+  this.setState( {
+      q: data.q,
+      titles: titles
+  });
     })
     .catch( err => console.log(err, "don't get data"));
   //console.log(e, "app");
@@ -111,7 +116,7 @@ handleSelect = e => {
           {
             !this.state.isLoading ?(
               !this.state.isQuestionSet ?(
-            <GameComponent q={this.state.q} currentTitle={this.state.currentTitle}/>
+            <GameComponent q={this.state.q} titles ={this.state.titles} currentTitle={this.state.currentTitle}/>
             ) : <AddQuestionSet serverUrl={serverUrl}/>) 
             
             : (<div>

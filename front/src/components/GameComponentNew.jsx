@@ -16,65 +16,96 @@ class GameComponentNew extends Component {
     constructor(props) {
         super(props)
 
-    this.state = {
-        questionsTitles: [
-            questionsSet1.actionQuestions.title,
-            questionsSet1.emotionQuestions.title,
-            questionsSet1.situationQuestions.title,
-            questionsSet1.thoughtQuestions.title,
-            questionsSet1.associationQuestions.title
-        ]
-    }
+   // const titles = this.props.q.sets.map( s => s.title);
+    // this.state = {
+    //     q: this.props.q,
+    //     titles: this.props.titles
+    // }
 
-
+    //const {q} = this.props.q;
+    // console.log("q game", this.state.q);
+    // console.log("titles game", this.state.titles);
 }
 
+// componentWillUpdate(prevProps, prevState, snapshot) {
+//         const titles = this.props.q.sets.map( s => s.title);
+//         this.setState({
+//             q: this.props.q,
+//             titles: titles
+//         })
+//   }
 
-componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('props in child component game', this.props.q) ;
-  }
+// handleSelect = e => {
+//    // console.log(this.props.serverUrl);
+//     console.log("select hanldle new game");
+//    fetch(this.props.serverUrl + '/changeset', {
+//        method: 'post',
+//        headers: {'Content-Type': 'application/json'},
+//        body: JSON.stringify({title: e})
+//    })
+//    //console.log("data")
+//    //fetch(this.props.serverUrl + '/changeset')
+//    .then(res => res.json())
+//    .then(data => {
+//   //   console.log(data.q, "data");
+//      this.setState({q: data.q})
+//        })
+//        .catch( err => console.log(err));
+//  }
 
-  componentDidMount() {
-  }
     
     render() {
-        this.setState({q:this.props});
-        const {q} = this.props;
-        console.log(this.q, 'q render');
+       // this.setState({q:this.props});
+    //     const titles = this.props.q.sets.map( s => s.title);
+    //     this.setState({
+    //         q: this.props.q,
+    //         titles: titles
+    //     })
+    //     //const {q} = this.props;
+    //    // const titles = q.sets.map( s => s.title);
+    //     console.log("titles game", titles);
+    //    // console.log(this.q, 'q render');
+    const {q, titles} = this.props;
         return (
             <div>
                 <div>
                     <h1 className="gameTitle">להעיף את הנגיף!</h1>
                 </div>
                 <div className="gameWrapper">
-                    <ChangeQuestionSetComponent changeQuestionsSet={this.changeQuestionsSet}/>
                     <Container>
                             <Row>
-                                {[...Array(q.sets.length)].map((e, i) => {
-                                    return <Col className="col question-type" key={i + 1}>
-                                        <div>{i + 1}</div>
+                                {[...Array(q.sets[0].content.length +1)].map((e, i) => {
+                                    return <Col className="col question-type" key={i}>
+                                        {
+                                            i === 0 ?
+                                                <div> </div>
+                                            :
+                                                <div>{i}</div>
+                                }
                                         </Col>
                                 })}
                         </Row>
                         <div></div>
-                        <Row>
+                        
                             {
                                 q.sets.map((set, i) => 
-                                    <Col>
+                                <Row key={i}>
+                                   
                                         <div className="col question-type">{set.title}</div>
                                         {set.content.map ((question, j) => 
                                             <div className="col" key={"set" + i+""+j}>
                                                 <TileComponent question={question} type={"set"+i} emoji={emojiList[i]}/>
                                             </div>                        
                                         )}
-                                    </Col>
+                                   
+                                    </Row>
                                 ) 
                             }
-                        </Row>
+                        
                         </Container>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <RandomTilePickerComponent questionsSetTitles={this.state.questionsTitles}/>
+                    <RandomTilePickerComponent questionsSetTitles={titles} optionsNumber={q.sets[0].content.length}/>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <InstructionsComponent/>
@@ -83,17 +114,6 @@ componentDidUpdate(prevProps, prevState, snapshot) {
         )
     }
 
-    changeQuestionsSet = (questionsSet) => {
-        this.setState({q:questionsSet,
-            questionsTitles: [
-                questionsSet.actionQuestions.title,
-                questionsSet.emotionQuestions.title,
-                questionsSet.situationQuestions.title,
-                questionsSet.thoughtQuestions.title,
-                questionsSet.associationQuestions.title
-            ]
-        })
-    }
 }
 
 export default GameComponentNew
