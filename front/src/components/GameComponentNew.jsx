@@ -93,7 +93,7 @@ class GameComponentNew extends Component {
                                    
                                         <div className="col question-type">{set.title}</div>
                                         {set.content.map ((question, j) => 
-                                            <div className="col" key={"set" + i+""+j}>
+                                            <div className="col" key={set.title + i+""+j}>
                                                 <TileComponent question={question} type={"set"+i} emoji={emojiList[i]}/>
                                             </div>                        
                                         )}
