@@ -23,10 +23,11 @@ class RandomTilePickerComponent extends Component {
     }
 
     pickRandomTile() {
-        const types = this.props.questionsSetTitles
+        const types = this.props.questionsSetTitles;
+        const optionsNumber = this.props.optionsNumber;
         const randomType = types[Math.floor(Math.random() * types.length)]
 
-        const randomNumber = Math.floor(Math.random() * 7) + 1
+        const randomNumber = Math.floor(Math.random() * optionsNumber) + 1
         
         this.setState({
             type: randomType,
