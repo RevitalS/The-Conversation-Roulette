@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GameComponent from './components/GameComponentNew'
+import GameComponent from './components/GameComponent'
 import AddQuestionSet from './components/AddQuestionSet'
 import './App.css';
 import './bootstrap.css';
@@ -76,7 +76,8 @@ handleSelect = e => {
   const titles = data.q.sets.map( s => s.title);
   this.setState( {
       q: data.q,
-      titles: titles
+      titles: titles,
+      currentTitle:  data.q.subject,
   });
     })
     .catch( err => console.log(err, "don't get data"));
@@ -116,7 +117,7 @@ handleSelect = e => {
           {
             !this.state.isLoading ?(
               !this.state.isQuestionSet ?(
-            <GameComponent q={this.state.q} titles ={this.state.titles} currentTitle={this.state.currentTitle}/>
+            <GameComponent q={this.state.q} titles ={this.state.titles} title={this.state.currentTitle}/>
             ) : <AddQuestionSet serverUrl={serverUrl}/>) 
             
             : (<div>

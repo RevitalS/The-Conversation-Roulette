@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser= require('body-parser');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const cors = require("cors");
@@ -8,8 +7,8 @@ const questions = require('./q');
 
 
 // Make sure you place body-parser before your CRUD handlers!
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 
 app.listen(process.env.PORT || 3000, ()=> {
@@ -31,7 +30,7 @@ app.listen(process.env.PORT || 3000, ()=> {
     const db = client.db('conversation');
     const quizCollection = db.collection('convs');
 
-    //quizCollection.insertOne(questions.questionsSet1);
+   //quizCollection.insertOne(questions.questionsSet2);
 
     // const sub = quizCollection.find({}).project({subject: 1, _id:0}).toArray()
     // .then(res => res.map(x => Object.values(x)[0]));
@@ -41,7 +40,7 @@ app.listen(process.env.PORT || 3000, ()=> {
         const sub =[];
          quizCollection.find({}).project({subject: 1, _id:0}).toArray()
         .then(r => r.map(x => sub.push(Object.values(x)[0])));
-       const bla =  quizCollection.findOne({subject: 'גילאי 6-8'})
+       const bla =  quizCollection.findOne({subject: 'להעיף את הנגיף! לגילאי 8 ומעלה'})
           .then(results => {
             
             console.log(results, "defualt data");

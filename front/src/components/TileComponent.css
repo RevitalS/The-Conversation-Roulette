@@ -3,63 +3,48 @@ button {
     height: 100%;
 }
 
-.action {
-    background-color: pink;
+.card {
+    max-width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    max-height: 100%;
 }
-
-.situation {
-    background-color: greenyellow;
-}
-
-.emotion {
-    background-color: lightblue;
-}
-
-.thought {
-    background-color: yellow;
-}
-
-.association {
-    background-color: #F9BD4F;
-}
-
-
 
 .btn-set0 {
-    background-color: pink;
+    background-color: pink !important;
     
 }
 
 .btn-set1 {
-    background-color: greenyellow;
+    background-color: greenyellow !important;
 }
 
 .btn-set2 {
-    background-color: lightblue;
+    background-color: lightblue !important;
 }
 
 .btn-set3 {
-    background-color: yellow;
+    background-color: yellow !important;
 }
 
 .btn-set4 {
-    background-color: #F9BD4F;
+    background-color: #F9BD4F !important;
 }
 
 .btn-set5 {
-    background-color: #df4ff9;
+    background-color: #df4ff9 !important;
 }
 
 .btn-set6 {
-    background-color: #4ff9eb;
+    background-color: #4ff9eb !important;
 }
 
 .btn-set7 {
-    background-color: #f94f57;
+    background-color: #f94f57 !important;
 }
 
 .btn-set8 {
-    background-color: #d4f94f;
+    background-color: #d4f94f !important;
 }
 .btn-set9 {
     background-color: #b18af0;
@@ -67,4 +52,5 @@ button {
 
 .tileComponent {
     height: 100%;
+    align-self:flex-start;
 }
